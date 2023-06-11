@@ -11,6 +11,7 @@
     "@types/node": "^16.18.35",
     "@types/react": "^18.2.11",
     "@types/react-dom": "^18.2.4",
+    "clsx": "^1.2.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-scripts": "5.0.1",
@@ -47,14 +48,14 @@
     "prettier": "^2.8.8",
     "tailwindcss": "^3.3.2"
   },
-  "husky": { 
+  "husky": {
     "hooks": {
-    "pre-commit": "lint-staged" 
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "src/*.{ts,tsx}": "eslint",
+    "src/*.{css,scss}": "stylelint",
+    "src/**/*.{js,jsx,ts,tsx,json,css,scss,md}": "prettier -w -u"
   }
-}, 
-"lint-staged": {
-"src/*.{ts,tsx}": "eslint", 
-"src/*.{css,scss}": "stylelint",
-"src/**/*.{js,jsx,ts,tsx,json,css,scss,md}": "prettier -w -u" 
-}
 }
