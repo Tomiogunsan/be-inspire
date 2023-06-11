@@ -14,7 +14,7 @@ type ButtonProps<C extends React.ElementType> = PolymorphicComponentProps<
 const btnClasses = 'px-4 py-3 transition duration-300'
 
 const VARIANTS = {
-  primary: 'bg-blue-900 text-blue-100 hover:bg-blue-700',
+  primary: 'bg-[#6d67ff] text-blue-100 hover:bg-[#3d3fdb]',
   link: 'text-indigo-700 hover:text-indigo-800 hover:border-b border-indigo-800 !px-0 !pb-1',
 }
 
