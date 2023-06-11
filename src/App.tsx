@@ -1,8 +1,14 @@
+import Button from "@/Sharedcomponents/button/Button";
 
 
 
 function App() {
-  return <h1 className="text-3xl font-bold underline bg-red-200">Hello world!</h1>;
+  return (
+    <div>
+      <Button type="button" variant="primary">Click me</Button>
+      <Button as="a" variant="link">Click me</Button>
+    </div>
+  )
 }
 
 export default App;
