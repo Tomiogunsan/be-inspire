@@ -5,7 +5,7 @@ export default function Input(props: InputProps) {
   const { label, placeholder, type } = props
   return (
     <div className='flex flex-col'>
-      <label className=' text-lg pb-2'>{label}</label>
+      <label className=' text-lg pb-2 text-[#898889]  font-medium'>{label}</label>
       <input
         placeholder={placeholder}
         type={type}
