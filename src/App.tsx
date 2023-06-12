@@ -1,11 +1,16 @@
+import { Routes, Route } from 'react-router-dom'
 
-import Login from "@/views/auth/Login"
+import AuthComponent from '@/views/auth/components/authReusable/AuthComponent'
 
 function App() {
   return (
-    <div>
-     <Login />
-    </div>
+    // <Routes>
+    //   <Route>
+        <div>
+          <AuthComponent title='Sign Up' smallText='Enter your email' name='name'/>
+        </div>
+    //   {/* </Route>
+    // </Routes> */}
   )
 }
 
