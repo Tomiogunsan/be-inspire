@@ -3,16 +3,15 @@ import { Routes, Route } from 'react-router-dom'
 
 
 import AuthLayout from '@/layout/AuthLayout'
+import Login from '@/views/auth/Login'
 
 function App() {
   return (
-    // <Routes>
-    //   <Route>
-        <div>
-          <AuthLayout/>
-        </div>
-    //   {/* </Route>
-    // </Routes> */}
+     <Routes>
+      <Route element={<AuthLayout />}>
+        <Route path='/login' element={<Login/>} />
+      </Route>
+    </Routes> 
   )
 }
 
