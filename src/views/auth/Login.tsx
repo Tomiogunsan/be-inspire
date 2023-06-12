@@ -1,15 +1,48 @@
-import React from 'react'
+import React, { useState } from 'react'
 import AuthComponent from '@/views/auth/components/authReusable/AuthComponent'
 import Button from '@/Sharedcomponents/button/Button'
-
+import Input from '@/Sharedcomponents/input/input'
+import { AiOutlineEye } from 'react-icons/ai'
+// import {AiOutlineEyeInvisible} from 'react-icons/ai'
 
 export default function Login() {
+  const [form, setForm] = useState({
+    email: '',
+    password: '',
+  })
+
+  function onInputChange(e: React.ChangeEvent<HTMLInputElement>){
+    setForm((state) => ({
+      ...state,
+      [e.target.name]: e.target.value,
+    }))
+  
+  }
   return (
     <div>
       <AuthComponent
         title='Log In'
         smallText='Enter your email and password to login'
       />
+      <Input
+        type='email'
+        name='email'
+        placeholder='Password'
+        label='Email'
+        value={form.email}
+        onChange={onInputChange}
+      />
+      <div className='relative'>
+        <Input
+          type='password'
+          name='password'
+          placeholder='Password'
+          label='Password'
+          value={form.password}
+          onChange={onInputChange}
+        />
+        <AiOutlineEye className='absolute right-2 top-[45px] cursor-pointer text-[#eaebee] font-bold ' />
+      </div>
       <Button
         type='button'
         variant='primary'

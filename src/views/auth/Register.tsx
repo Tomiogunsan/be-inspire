@@ -1,14 +1,51 @@
-import React from 'react'
+import React, { useState } from 'react'
 import AuthComponent from '@/views/auth/components/authReusable/AuthComponent'
 import Button from '@/Sharedcomponents/button/Button'
+import Input from '@/Sharedcomponents/input/input'
+
 
 export default function Register() {
+  const [form, setForm] = useState({
+    name: '',
+    email: '',
+    password: '',
+  })
+
+  function onInputChange(e: React.ChangeEvent<HTMLInputElement>) {
+    setForm((state) => ({
+      ...state,
+      [e.target.name]: e.target.value,
+    }))
+  }
   return (
     <div>
       <AuthComponent
         title='Create an account'
         smallText='Sign up now to create and read inspirational quote'
-        name='Name'
+      />
+      <Input
+        type='input'
+        placeholder='Name'
+        label='Name'
+        value={form.name}
+        name='name'
+        onChange={onInputChange}
+      />
+      <Input
+        type='email'
+        placeholder='Email'
+        label='Email'
+        value={form.email}
+        name='email'
+        onChange={onInputChange}
+      />
+      <Input
+        type='password'
+        placeholder='Password'
+        label='Password'
+        value={form.password}
+        name='password'
+        onChange={onInputChange}
       />
       <Button
         type='button'
