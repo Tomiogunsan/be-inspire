@@ -15,7 +15,7 @@ const btnClasses = 'px-4 py-3 transition duration-300'
 
 const VARIANTS = {
   primary: 'bg-[#6d67ff] text-blue-100 hover:bg-[#3d3fdb]',
-  link: 'text-indigo-700 hover:text-indigo-800 hover:border-b border-indigo-800 !px-0 !pb-1',
+  link: 'text-[#6d67ff] hover:text-[#3d3fdb] hover:border-b border-[#3d3fdb] !px-0 !pb-1',
 }
 
 export default function Button<C extends React.ElementType = 'button'>(

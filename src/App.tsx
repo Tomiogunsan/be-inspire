@@ -1,16 +1,19 @@
 import { Routes, Route } from 'react-router-dom'
 
-import AuthComponent from '@/views/auth/components/authReusable/AuthComponent'
+
+
+import AuthLayout from '@/layout/AuthLayout'
+import Login from '@/views/auth/Login'
+import Register from '@/views/auth/Register'
 
 function App() {
   return (
-    // <Routes>
-    //   <Route>
-        <div>
-          <AuthComponent title='Sign Up' smallText='Enter your email' name='name'/>
-        </div>
-    //   {/* </Route>
-    // </Routes> */}
+    <Routes>
+      <Route element={<AuthLayout />}>
+        <Route path='/login' element={<Login />} />
+        <Route path='/register' element={<Register />} />
+      </Route>
+    </Routes>
   )
 }
 
