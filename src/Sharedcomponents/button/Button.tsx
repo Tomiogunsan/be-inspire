@@ -1,6 +1,7 @@
 import React from 'react'
 import { PolymorphicComponentProps } from './button.type'
 import clsx from 'clsx'
+import { ApolloCache, DefaultContext, MutationFunctionOptions } from '@apollo/client'
 
 type ButtonProps<C extends React.ElementType> = PolymorphicComponentProps<
   C,
@@ -8,8 +9,8 @@ type ButtonProps<C extends React.ElementType> = PolymorphicComponentProps<
     children: React.ReactNode
     className?: string
     variant: 'primary' | 'link'
-  }
->
+    onClick?:() => void
+  }>
 
 const btnClasses = 'px-4 py-3 transition duration-300'
 
@@ -18,7 +19,7 @@ const VARIANTS = {
   link: 'text-[#6d67ff] hover:text-[#3d3fdb] hover:border-b border-[#3d3fdb] !px-0 !pb-1',
 }
 
-export default function Button<C extends React.ElementType = 'button'>(
+export default function Button<C extends React.ElementType  = 'button'>(
   props: ButtonProps<C>
 ) {
   const { children, as, className, variant, ...buttonProps } = props
