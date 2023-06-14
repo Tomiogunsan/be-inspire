@@ -3,6 +3,7 @@ import AuthComponent from '@/views/auth/components/authReusable/AuthComponent'
 import Button from '@/Sharedcomponents/button/Button'
 import Input from '@/Sharedcomponents/input/input'
 import { AiOutlineEye } from 'react-icons/ai'
+import { LoginProps } from './auth.type'
 // import {AiOutlineEyeInvisible} from 'react-icons/ai'
 
 export default function Login() {
@@ -24,21 +25,18 @@ export default function Login() {
   }
 
   
-  type dataProps = {
-    email: string
-    password: string
-  }
+  
 
-  function validation(data: dataProps) {
+  function validation(data: LoginProps) {
     setValidationIsFired(true)
     let validated = true
-    let error: dataProps = {
+    let error: LoginProps = {
       email: '',
       password: '',
     }
     Object.keys(data)?.forEach((field) => {
-      if (data[field as keyof dataProps] === '') {
-        error[field as keyof dataProps] = `${field} is required`
+      if (data[field as keyof LoginProps] === '') {
+        error[field as keyof LoginProps] = `${field} is required`
         validated = false
       }
     })

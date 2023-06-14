@@ -1,10 +1,18 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import AuthComponent from '@/views/auth/components/authReusable/AuthComponent'
 import Button from '@/Sharedcomponents/button/Button'
 import Input from '@/Sharedcomponents/input/input'
+import { RegisterProps } from '@/views/auth/auth.type'
 
 
 export default function Register() {
+  const[validationIsFired, setValidationIsFired] = useState(false)
+  const [errors, setErrors] = useState({
+    email: '',
+    password: '',
+    name: ''
+  })
+  
   const [form, setForm] = useState({
     name: '',
     email: '',
@@ -16,6 +24,40 @@ export default function Register() {
       ...state,
       [e.target.name]: e.target.value,
     }))
+  }
+
+  function validation(data: RegisterProps) {
+  setValidationIsFired(true)
+  let validate = true
+  let error: RegisterProps = {
+    email: '',
+    password: '',
+    name: '',
+  }
+  Object.keys(data)?.forEach((field) => {
+    if(data[field as keyof RegisterProps] === '') {
+      error[field as keyof RegisterProps] = `${field} is required`
+      validate = false
+    
+  }})
+  setErrors(error)
+  return validate;
+ 
+  }
+
+  useEffect(() => {
+   if(validationIsFired){
+    validation(form)
+   }else{
+    return
+   }
+  
+   
+  }, [ validationIsFired, form])
+  
+
+  function onSubmit(){
+    console.log('click')
   }
   return (
     <div>
@@ -31,6 +73,11 @@ export default function Register() {
         name='name'
         onChange={onInputChange}
       />
+      {errors.name && (
+        <span className='text-red-600 text-sm capitalize'>
+          {errors.name}
+        </span>
+      )}
       <Input
         type='email'
         placeholder='Email'
@@ -39,6 +86,9 @@ export default function Register() {
         name='email'
         onChange={onInputChange}
       />
+      {errors.email && (
+        <span className='text-red-600 text-sm capitalize '>{errors.email}</span>
+      )}
       <Input
         type='password'
         placeholder='Password'
@@ -47,10 +97,26 @@ export default function Register() {
         name='password'
         onChange={onInputChange}
       />
+      {errors.password && (
+        <span className='text-red-600 text-sm capitalize'>
+          {errors.password}
+        </span>
+      )}
       <Button
-        type='button'
+        type='submit'
         variant='primary'
         className='w-full mt-4 rounded-sm'
+        onClick={() => {
+          const dataToValidate = {
+            email: form.email,
+            password: form.password,
+            name: form.name,
+          }
+          if (validation(dataToValidate)) {
+            onSubmit()
+          }
+        }}
+        // onClick={onSubmit}
       >
         Create Account
       </Button>
