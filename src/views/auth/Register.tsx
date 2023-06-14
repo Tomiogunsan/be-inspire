@@ -57,7 +57,7 @@ export default function Register() {
   
 
   function onSubmit(){
-    console.log('click')
+   
   }
   return (
     <div>
