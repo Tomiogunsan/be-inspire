@@ -2,12 +2,16 @@ import React from 'react'
 import { PolymorphicComponentProps } from './button.type'
 import clsx from 'clsx'
 
-type ButtonProps<C extends React.ElementType> = PolymorphicComponentProps<
+type ButtonProps<
+  C extends React.ElementType 
+> = PolymorphicComponentProps<
   C,
   {
     children: React.ReactNode
     className?: string
     variant: 'primary' | 'link'
+    onClick?: () => void
+    
   }
 >
 
@@ -18,7 +22,7 @@ const VARIANTS = {
   link: 'text-[#6d67ff] hover:text-[#3d3fdb] hover:border-b border-[#3d3fdb] !px-0 !pb-1',
 }
 
-export default function Button<C extends React.ElementType = 'button'>(
+export default function Button<C extends React.ElementType  = 'button'>(
   props: ButtonProps<C>
 ) {
   const { children, as, className, variant, ...buttonProps } = props
