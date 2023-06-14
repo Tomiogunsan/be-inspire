@@ -70,8 +70,8 @@ export default function Login() {
       email: form.email,
       password: form.password,
     },
-    onCompleted: ({ onSubmit }) => {
-      localStorage.setItem(AUTH_TOKEN, onSubmit.token)
+    onCompleted: ({ login }) => {
+      localStorage.setItem(AUTH_TOKEN, login.token)
       navigate('/')
     },
   })

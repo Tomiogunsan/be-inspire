@@ -60,9 +60,7 @@ export default function Register() {
   }, [ validationIsFired, form])
   
 
-  // function onSubmit(){
-   
-  // }
+  
 
   const REGISTER = gql`
   mutation SignupMutation($email: String!, $password: String!, $name: String!) {
