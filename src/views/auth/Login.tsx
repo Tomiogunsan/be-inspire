@@ -3,16 +3,21 @@ import AuthComponent from '@/views/auth/components/authReusable/AuthComponent'
 import Button from '@/Sharedcomponents/button/Button'
 import Input from '@/Sharedcomponents/input/input'
 import { AiOutlineEye } from 'react-icons/ai'
-import { LoginProps } from './auth.type'
+import { LoginProps, onSubmitProps } from './auth.type'
+import { ApolloCache, DefaultContext, MutationFunctionOptions, gql, useMutation } from '@apollo/client'
+import { AUTH_TOKEN } from './constants'
+import {  useNavigate } from 'react-router-dom'
 // import {AiOutlineEyeInvisible} from 'react-icons/ai'
 
 export default function Login() {
+  const navigate = useNavigate()
   const [validationIsFired, setValidationIsFired] = useState(false)
   const [errors, setErrors] = useState({
     email: '',
     password: '',
   })
   const [form, setForm] = useState({
+    login:true,
     email: '',
     password: '',
   })
@@ -23,9 +28,6 @@ export default function Login() {
       [e.target.name]: e.target.value,
     }))
   }
-
-  
-  
 
   function validation(data: LoginProps) {
     setValidationIsFired(true)
@@ -52,12 +54,28 @@ export default function Login() {
     }
   }, [validationIsFired, form])
 
-  function onSubmit(){
-    
-    
+//  function onSubmit() {}
 
+  const LOGIN_MUTATION = gql`
+    mutation LoginMutation($email: String!, $password: String!) {
+      login(email: $email, password: $password) {
+        token
+      }
     }
-  
+  `
+
+  // eslint-disable-next-line @typescript-eslint/no-redeclare
+  const [onSubmit] = useMutation(LOGIN_MUTATION, {
+    variables: {
+      email: form.email,
+      password: form.password,
+    },
+    onCompleted: ({ onSubmit }) => {
+      localStorage.setItem(AUTH_TOKEN, onSubmit.token)
+      navigate('/')
+    },
+  })
+
   return (
     <div>
       <AuthComponent
@@ -73,7 +91,9 @@ export default function Login() {
         onChange={onInputChange}
       />
       {errors.email && (
-        <span className='text-red-600 text-sm capitalize pb-4'>{errors.email}</span>
+        <span className='text-red-600 text-sm capitalize pb-4'>
+          {errors.email}
+        </span>
       )}
       <div className='relative'>
         <Input
@@ -87,23 +107,27 @@ export default function Login() {
         <AiOutlineEye className='absolute right-2 top-[45px] cursor-pointer text-[#eaebee] font-bold ' />
       </div>
       {errors.password && (
-        <span className='text-red-600 text-sm capitalize'>{errors.password}</span>
+        <span className='text-red-600 text-sm capitalize'>
+          {errors.password}
+        </span>
       )}
       <Button
         type='submit'
         variant='primary'
         className='w-full mt-2 rounded-sm'
-        onClick={() => {
+        onClick={
+          () => {
           const dataToValidate = {
             email: form.email,
             password: form.password,
           }
-          if(validation(dataToValidate)){
+          if (validation(dataToValidate)) {
             onSubmit()
+          }
         }
-        
-      }}
-      // onClick={onSubmit}
+        // form.login ? login : ''
+      }
+        // onClick={onSubmit}
       >
         Sign in
       </Button>
@@ -118,4 +142,4 @@ export default function Login() {
       </Button>
     </div>
   )
-    }
+}

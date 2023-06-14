@@ -3,9 +3,13 @@ import AuthComponent from '@/views/auth/components/authReusable/AuthComponent'
 import Button from '@/Sharedcomponents/button/Button'
 import Input from '@/Sharedcomponents/input/input'
 import { RegisterProps } from '@/views/auth/auth.type'
+import { gql, useMutation } from '@apollo/client'
+import { AUTH_TOKEN } from './constants'
+import { useNavigate } from 'react-router-dom'
 
 
 export default function Register() {
+  const navigate = useNavigate()
   const[validationIsFired, setValidationIsFired] = useState(false)
   const [errors, setErrors] = useState({
     email: '',
@@ -56,9 +60,30 @@ export default function Register() {
   }, [ validationIsFired, form])
   
 
-  function onSubmit(){
+  // function onSubmit(){
    
+  // }
+
+  const REGISTER = gql`
+  mutation SignupMutation($email: String!, $password: String!, $name: String!) {
+    signup(email: $email, password: $password, name: $name) {
+      token
+    }
+  
   }
+  `
+
+  const[onSubmit] = useMutation(REGISTER, {
+    variables: {
+      name: form.name,
+      email: form.email,
+      password: form.password
+    },
+    onCompleted: ({signup}) => {
+      localStorage.setItem(AUTH_TOKEN, signup?.token)
+    }
+  })
+
   return (
     <div>
       <AuthComponent
@@ -114,6 +139,7 @@ export default function Register() {
           }
           if (validation(dataToValidate)) {
             onSubmit()
+            navigate('/')
           }
         }}
         // onClick={onSubmit}
