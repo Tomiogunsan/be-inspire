@@ -4,9 +4,13 @@ import { Outlet } from 'react-router-dom'
 
 export default function DashboardLayout() {
   return (
-    <div>
+    <div className='bg-[#e6e8eb] w-full flex'>
+      
         <Sidebar />
-        <Outlet />
+        <div className='w-[80%]'>
+          <Outlet />
+        </div>
+     
     </div>
   )
 }
