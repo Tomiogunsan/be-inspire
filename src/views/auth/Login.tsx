@@ -3,10 +3,10 @@ import AuthComponent from '@/views/auth/components/authReusable/AuthComponent'
 import Button from '@/Sharedcomponents/button/Button'
 import Input from '@/Sharedcomponents/input/input'
 import { AiOutlineEye } from 'react-icons/ai'
-import { LoginProps} from './auth.type'
-import {  gql, useMutation } from '@apollo/client'
+import { LoginProps } from './auth.type'
+import { gql, useMutation } from '@apollo/client'
 import { AUTH_TOKEN } from './constants'
-import {  useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 // import {AiOutlineEyeInvisible} from 'react-icons/ai'
 
 export default function Login() {
@@ -17,7 +17,7 @@ export default function Login() {
     password: '',
   })
   const [form, setForm] = useState({
-    login:true,
+    login: true,
     email: '',
     password: '',
   })
@@ -53,8 +53,6 @@ export default function Login() {
       return
     }
   }, [validationIsFired, form])
-
-//  function onSubmit() {}
 
   const LOGIN_MUTATION = gql`
     mutation LoginMutation($email: String!, $password: String!) {
@@ -115,8 +113,7 @@ export default function Login() {
         type='submit'
         variant='primary'
         className='w-full mt-2 rounded-sm'
-        onClick={
-          () => {
+        onClick={() => {
           const dataToValidate = {
             email: form.email,
             password: form.password,
@@ -124,22 +121,23 @@ export default function Login() {
           if (validation(dataToValidate)) {
             onSubmit()
           }
-        }
-        // form.login ? login : ''
-      }
-        // onClick={onSubmit}
+        }}
       >
         Sign in
       </Button>
       <div className='flex gap-[4px] items-center pt-4'>
         <p className='text-[#bfc3c8] pt-[8px]'>Don't have an account?</p>
-        <Button as='a' variant='link'>
-          Sign Up
-        </Button>
+        <Link to='/register'>
+          <Button as='a' variant='link'>
+            Sign Up
+          </Button>
+        </Link>
       </div>
-      <Button as='a' variant='link'>
-        Forgot Password?
-      </Button>
+      <Link to='/forgot-password'>
+        <Button as='a' variant='link'>
+          Forgot Password?
+        </Button>
+      </Link>
     </div>
   )
 }
