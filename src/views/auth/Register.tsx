@@ -5,7 +5,7 @@ import Input from '@/Sharedcomponents/input/input'
 import { RegisterProps } from '@/views/auth/auth.type'
 import { gql, useMutation } from '@apollo/client'
 import { AUTH_TOKEN } from './constants'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 
 export default function Register() {
@@ -97,9 +97,7 @@ export default function Register() {
         onChange={onInputChange}
       />
       {errors.name && (
-        <span className='text-red-600 text-sm capitalize'>
-          {errors.name}
-        </span>
+        <span className='text-red-600 text-sm capitalize'>{errors.name}</span>
       )}
       <Input
         type='email'
@@ -145,10 +143,12 @@ export default function Register() {
         Create Account
       </Button>
       <div className='flex gap-[4px] items-center pt-4'>
-        <p className='text-[#bfc3c8] pt-[8px]'>Already have an account?</p>
-        <Button as='a' variant='link'>
-          Sign In
-        </Button>
+        <p className='text-[#bfc3c8] pt-[2px]'>Already have an account?</p>
+        <Link to='/login'>
+          <Button as='a' variant='link'>
+            Sign In
+          </Button>
+        </Link>
       </div>
     </div>
   )
