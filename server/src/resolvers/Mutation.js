@@ -61,6 +61,35 @@ async function login(parent, args, context, info) {
   };
 }
 
+// async function resetPasswordRequest (parent, { email }, ctx, info) {
+//     const user = await ctx.db.query.user({ where: { email } })
+//     const token = jwt.sign({ userId: user.id}, APP_SECRET, { expiresIn: '1h'})
+    
+//     // Send email to user with url and token
+//     console.log(token) // TODO: implement sending of email with url and token
+
+//     return { email: user.email }
+//   }
+
+// async function resetPassword (parent, { token, password }, ctx, info) {
+//     // Verify token and check if the user exist
+//     const { userId } = jwt.verify(token, APP_SECRET)
+//     const userExists = await ctx.db.exists.User({ id: userId })
+//     if (!userExists) {
+//       throw new Error(`User doesn't exist.`)
+//     }
+
+    // If no error, set new password.
+  //   const newPassword = await bcrypt.hash(password, 10)
+  //   return ctx.db.mutation.updateUser({
+  //     where: { id: userId },
+  //     data: { password: newPassword }
+  //    })
+  // }
+
+
+
+
 async function vote(parent, args, context, info) {
   const { userId } = context;
 
@@ -94,6 +123,7 @@ module.exports = {
   post,
   signup,
   login,
+  
   vote
 };
 
