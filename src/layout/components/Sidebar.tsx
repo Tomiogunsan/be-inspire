@@ -14,6 +14,7 @@ export default function Sidebar() {
           <BsPencilSquare className=' text-xl text-[#000001] hover:text-[#f4f4f4]' />
           Create Quote
         </div>
+        <div>View Quote</div>
       </div>
     </div>
   )
