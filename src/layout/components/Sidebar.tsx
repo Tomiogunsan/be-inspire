@@ -1,5 +1,5 @@
 import React from 'react'
-import {AiFillHome, AiOutlineHome} from 'react-icons/ai'
+import { AiFillHome, AiOutlineHome } from 'react-icons/ai'
 import { BsPencilSquare } from 'react-icons/bs'
 import { Link } from 'react-router-dom'
 
@@ -11,14 +11,14 @@ export default function Sidebar() {
           <AiFillHome className='text-[#000001] text-xl hover:text-[#f4f4f4]' />
           Home
         </div>
-       
-          <Link to='/create-quote'>
-             <div className=' ml-6 flex items-center justify-center gap-4 text-lg text-[#535a65] hover:bg-[#5d53f1] hover:text-[#f4f4f4] hover:px-4 hover:py-4 hover:rounded-md hover:transition  ease-linear'>
+
+        <Link to='/create-quote'>
+          <div className=' ml-6 flex items-center justify-center gap-4 text-lg text-[#535a65] hover:bg-[#5d53f1] hover:text-[#f4f4f4] hover:px-4 hover:py-4 hover:rounded-md hover:transition  ease-linear'>
             <BsPencilSquare className=' text-xl text-[#000001] hover:text-[#f4f4f4]' />
             Create Quote
-             </div>
-          </Link>
-       
+          </div>
+        </Link>
+
         <div>View Quote</div>
       </div>
     </div>
