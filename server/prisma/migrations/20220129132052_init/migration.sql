@@ -2,8 +2,8 @@
 CREATE TABLE "Link" (
     "id" TEXT NOT NULL PRIMARY KEY,
     "createdAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    "description" TEXT NOT NULL,
-    "url" TEXT NOT NULL,
+    "quote" TEXT NOT NULL,
+    "firstName" TEXT NOT NULL,
     "postedById" TEXT,
     CONSTRAINT "Link_postedById_fkey" FOREIGN KEY ("postedById") REFERENCES "User" ("id") ON DELETE SET NULL ON UPDATE CASCADE
 );

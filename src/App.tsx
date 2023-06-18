@@ -9,16 +9,20 @@ import Dashboard from './views/dashboard/Dashboard'
 import DashboardLayout from './layout/DashboardLayout'
 import Home from '@/views/dashboard/Home'
 import CreateQuote from '@/views/dashboard/CreateQuote'
+import { AUTH_TOKEN } from '@/views/auth/constants'
 
 function App() {
+  const authToken = localStorage.getItem(AUTH_TOKEN)
   return (
     <Routes>
-      <Route element={<DashboardLayout />}>
-        <Route path='/' element={<Dashboard />} >
-        <Route index element={<Home />} />
-        <Route path='/create-quote' element={<CreateQuote />} />
+      {authToken && (
+        <Route element={<DashboardLayout />}>
+          <Route path='/' element={<Dashboard />}>
+            <Route index element={<Home />} />
+            <Route path='/create-quote' element={<CreateQuote />} />
+          </Route>
         </Route>
-      </Route>
+      )}
 
       <Route element={<AuthLayout />}>
         <Route path='/login' element={<Login />} />

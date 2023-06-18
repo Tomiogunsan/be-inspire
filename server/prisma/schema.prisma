@@ -10,8 +10,8 @@ generator client {
 model Link {
   id          String   @id @default(uuid())
   createdAt   DateTime @default(now())
-  description String
-  url         String
+  quote String
+  firstName         String
   postedBy    User?    @relation(fields: [postedById], references: [id])
   postedById  String?
   votes       Vote[]
