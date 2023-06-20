@@ -10,6 +10,7 @@ import DashboardLayout from './layout/DashboardLayout'
 import Home from '@/views/dashboard/Home'
 import CreateQuote from '@/views/dashboard/CreateQuote'
 import { AUTH_TOKEN } from '@/views/auth/constants'
+import ViewQuote from '@/views/dashboard/ViewQuote'
 
 function App() {
   const authToken = localStorage.getItem(AUTH_TOKEN)
@@ -20,6 +21,7 @@ function App() {
           <Route path='/' element={<Dashboard />}>
             <Route index element={<Home />} />
             <Route path='/create-quote' element={<CreateQuote />} />
+            <Route path='/view-quote' element={<ViewQuote />} />
           </Route>
         </Route>
       )}
