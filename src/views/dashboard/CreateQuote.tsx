@@ -2,6 +2,7 @@ import Button from '@/Sharedcomponents/button/Button'
 import Input from '@/Sharedcomponents/input/input'
 import React, { useState } from 'react'
 import { useMutation, gql } from '@apollo/client'
+import { useNavigate } from 'react-router-dom';
 
 
 
@@ -17,6 +18,7 @@ mutation PostMutation($firstName: String! $quote: String!){
 `;
 
 export default function CreateQuote() {
+  const navigate = useNavigate()
   const [formState, setFormState] = useState({
     firstName: '',
     quote: '',
@@ -36,7 +38,8 @@ export default function CreateQuote() {
     variables: {
       firstName: formState.firstName,
       quote: formState.quote
-    }
+    },
+    onCompleted: () => navigate('/')
   })
 
   function onSubmit(e: React.FormEvent<HTMLFormElement>){
