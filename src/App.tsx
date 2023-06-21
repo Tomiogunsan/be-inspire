@@ -21,7 +21,7 @@ function App() {
           <Route path='/' element={<Dashboard />}>
             <Route index element={<Home />} />
             <Route path='/create-quote' element={<CreateQuote />} />
-            <Route path='/view-quote' element={<ViewQuote />} />
+            <Route path='/view-quote' element={<ViewQuote  />} />
           </Route>
         </Route>
       )}
