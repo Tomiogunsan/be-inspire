@@ -3,6 +3,8 @@ import { QuoteProps } from '@/views/dashboard/dashBoard.type'
 import { gql, useMutation } from '@apollo/client'
 import { AiFillHeart } from 'react-icons/ai'
 import { AUTH_TOKEN } from '@/views/auth/constants'
+import Moment from 'react-moment'
+import Button from '@/Sharedcomponents/button/Button'
 
 const VOTE_MUTATION = gql`
   mutation VoteMutation($linkId: ID!) {
@@ -36,14 +38,18 @@ export default function Quote(props: QuoteProps) {
   //   console.log(firstName)
   return (
     <div className='bg-red-600 rounded-md text-white flex flex-col items-center justify-center'>
-      <p>{firstName}</p>
+      <p>Posted by {firstName}</p>
       <p>{quote}</p>
 
       {authToken && (
         <div>
-          <AiFillHeart />
+          {vote.length}
+          <Button type='button' variant='primary' onClick={vote}>
+            <AiFillHeart />
+          </Button>
         </div>
       )}
+      <Moment fromNow>{createdAt}</Moment>
     </div>
   )
 }
