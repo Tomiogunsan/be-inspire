@@ -14,9 +14,9 @@ const FEED_QUERY = gql`
         createdAt
         votes {
           id
-          user {
-            id
-          }
+         user{
+          id
+         }
         }
       }
     }
@@ -37,6 +37,7 @@ export default function ViewQuote() {
           name={quote?.name}
           quoteId={quote?.id}
           createdAt={quote.createdAt}
+          votes={quote.votes}
         />
       ))}
     </div>

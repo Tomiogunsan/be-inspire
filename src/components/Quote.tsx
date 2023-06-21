@@ -27,7 +27,7 @@ const VOTE_MUTATION = gql`
 `
 
 export default function Quote(props: QuoteProps) {
-  const { firstName, quote, quoteId, createdAt } = props
+  const { firstName, quote, quoteId, createdAt, votes } = props
   const authToken = localStorage.getItem(AUTH_TOKEN)
 
   const [vote] = useMutation(VOTE_MUTATION, {
@@ -43,7 +43,7 @@ export default function Quote(props: QuoteProps) {
 
       {authToken && (
         <div>
-          {vote.length}
+          {votes?.length }
           <Button type='button' variant='primary' onClick={vote}>
             <AiFillHeart />
           </Button>
